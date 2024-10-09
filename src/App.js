@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { gapi } from 'gapi-script';
+import './App.css';
 
-const CLIENT_ID = '285627898032-52afj0suvpc07rerfu047pvmn2gt8caa.apps.googleusercontent.com';
-const API_KEY = 'AIzaSyCZW-3y6X_PPThOLqEV3N5GwXLZBIA_hMQ';
-const SCOPES = 'https://www.googleapis.com/auth/gmail.send';
+const { CLIENT_ID, API_KEY, SCOPES } = process.env;
 
 const SendEmail = () => {
   const [isSignedIn, setIsSignedIn] = useState(false);
@@ -58,31 +57,30 @@ const SendEmail = () => {
   };
 
   return (
-    <div>
+    <div className="App">
       {!isSignedIn ? (
-        <button onClick={handleSignIn}>Sign in with Google</button>
+        <button className="sign-in-button" onClick={handleSignIn}>Sign in with Google</button>
       ) : (
         <>
-          <h2>Send an Email</h2>
-          <input
-            type="email"
-            placeholder="Recipient"
-            value={recipient}
-            onChange={(e) => setRecipient(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="Subject"
-            value={subject}
-            onChange={(e) => setSubject(e.target.value)}
-          />
-          <textarea
-            placeholder="Message"
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-          />
-          <button onClick={sendEmail}>Send Email</button>
-          <button onClick={handleSignOut}>Sign Out</button>
+          <h2 className="email-header">Send an Email</h2>
+          <form className="email-form">
+            <div className="input-container">
+              <label htmlFor="recipient">Recipient:</label>
+              <input type="email" id="recipient" placeholder="example@gmail.com" value={recipient} onChange={(e) => setRecipient(e.target.value)} />
+            </div>
+            <div className="input-container">
+              <label htmlFor="subject">Subject:</label>
+              <input type="text" id="subject" placeholder="Subject" value={subject} onChange={(e) => setSubject(e.target.value)} />
+            </div>
+            <div className="input-container">
+              <label htmlFor="message">Message:</label>
+              <textarea id="message" placeholder="Message" value={message} onChange={(e) => setMessage(e.target.value)} />
+            </div>
+            <div className="button-container">
+              <button className="send-button" onClick={sendEmail}>Send Email</button>
+              <button className="sign-out-button" onClick={handleSignOut}>Sign Out</button>
+            </div>
+          </form>
         </>
       )}
     </div>
@@ -90,3 +88,4 @@ const SendEmail = () => {
 };
 
 export default SendEmail;
+
