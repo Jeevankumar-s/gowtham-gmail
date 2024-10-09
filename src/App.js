@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { gapi } from 'gapi-script';
 
-const CLIENT_ID = 'your-client-id.apps.googleusercontent.com';
-const API_KEY = 'your-api-key';
+const CLIENT_ID = '285627898032-52afj0suvpc07rerfu047pvmn2gt8caa.apps.googleusercontent.com';
+const API_KEY = 'AIzaSyCZW-3y6X_PPThOLqEV3N5GwXLZBIA_hMQ';
 const SCOPES = 'https://www.googleapis.com/auth/gmail.send';
 
 const SendEmail = () => {
